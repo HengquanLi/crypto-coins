@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import HTMLReactParser from 'html-react-parser';
 import { useParams } from 'react-router-dom';
 import millify from 'millify';
 import { Row, Col, Select, Typography } from 'antd';
@@ -19,13 +20,13 @@ import {
   useGetCryptoHistoryQuery,
 } from '../services/cryptoApi';
 import Loader from './Loader';
-import LineChart from './';
+import {LineChart} from './';
 
 const { Title, Text } = Typography;
 const { Option } = Select;
 
 const CryptoDetails = () => {
-  const coinId = useParams();
+  const {coinId} = useParams();
   const [timeperiod, setTimeperiod] = useState('7d');
   const { data, isFetching } = useGetCryptoDetailsQuery(coinId);
   const { data: coinHistory } = useGetCryptoHistoryQuery({
